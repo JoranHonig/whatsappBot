@@ -1,9 +1,17 @@
 import re
-class LedHandler():
-  
+from __init__ import Handler
+class LedHandler(Handler):  
   def __init__(self):
+    serial = serial.Serial(
+      port='/dev/ttyUSB1',
+      baudrate=9600,
+      parity=serial.PARITY_ODD,
+      stopbits=serial.STOPBITS_TWO,
+      bytesize=serial.SEVENBITS
+    )
+
     self.leds = {}
-    for i in 1..5:
+    for i in range(1,6):
       self.leds[i] = LedStrip(i)
 
     self.expression = re.compile("led: ([a-z])+ (([a-z]|[A-Z])+|0?\.[0-9]+)( for [1-5])?")
@@ -39,37 +47,39 @@ class LedHandler():
 
 
   def handle_color(self, color):
-    for i in 1..5:
+    for i in range(1,6):
        self.leds[i].set_color(color)
 
   def handle_color(self, color, ledid):
     self.leds[ledid].set_color(color)
 
   def handle_brightness(self, brightness):
-    for i in 1..5:
-       self.leds[i].set_brightness)
+    for i in range(1,6):
+       self.leds[i].set_brightness(brightness)
 
   def handle_brightness(self, brightness, ledid):
     self.leds[ledid].set_brightness(brightness)
   
   def handle_mode(self, mode):
-    for i in 1..5:
+    for i in range(1,6):
        self.leds[i].set_mode(mode)
 
   def handle_mode(self, mode, ledid):
     self.leds[ledid].set_mode(ledid) 
 
 class LedStrip:
-  def __init__(self, number):
+  def __init__(self, number, serial):
+    self.serial = serial
     self.mode = 'default'
     self.brightness = 0.8
     self.color = 'white'
     self.number = number
   def set_color(self, color):
     self.color = color
-  
-  def set_brightness(self, brightness)
+      
+  def set_brightness(self, brightness):
     self.brightness = brightness
   
   def set_mode(self, mode):
     self.mode = mode
+
