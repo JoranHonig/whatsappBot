@@ -16,13 +16,13 @@ class IftttHandler(Handler):
   def expression(self):
     return self.expression
 
-  def handle():
+  def handle(self):
     return 1
 
   def build_uri(self, message):
-    prefix  = https://maker.ifttt.com/trigger/
+    prefix  = "https://maker.ifttt.com/trigger/"
     event   = message
-    postfix = /with/key/ + apikey
+    postfix = "/with/key/ + apikey"
     
     return (prefix + event + postfix)
   def do_req(self, message, parameters, method):

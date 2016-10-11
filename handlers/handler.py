@@ -2,13 +2,6 @@ import re
 from __init__ import Handler
 class LedHandler(Handler):  
   def __init__(self):
-    serial = serial.Serial(
-      port='/dev/ttyUSB1',
-      baudrate=9600,
-      parity=serial.PARITY_ODD,
-      stopbits=serial.STOPBITS_TWO,
-      bytesize=serial.SEVENBITS
-    )
 
     self.leds = {}
     for i in range(1,6):
