@@ -1,10 +1,11 @@
 import re
 #This class is used to pass information from the yowsup stack to specific handlers
 class MessageHandler():
-  def __init__():
+  def __init__(self):
     self.handlers = {}
 
   def handle(self, message):
+    print "Handling mesage."
     for expression in self.handlers.keys():
        match = expression.match(message) 
        if match != None:
