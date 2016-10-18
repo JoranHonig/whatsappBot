@@ -2,25 +2,19 @@ import re
 from __init__ import Handler
 class LedHandler(Handler):  
   def __init__(self):
-    serial = serial.Serial(
-      port='/dev/ttyUSB1',
-      baudrate=9600,
-      parity=serial.PARITY_ODD,
-      stopbits=serial.STOPBITS_TWO,
-      bytesize=serial.SEVENBITS
-    )
 
     self.leds = {}
     for i in range(1,6):
-      self.leds[i] = LedStrip(i)
+      self.leds[i] = LedStrip(i, 1)
 
     self.expression = re.compile("led: ([a-z])+ (([a-z]|[A-Z])+|0?\.[0-9]+)( for [1-5])?")
-    return 0
 
   def expression(self):
     return self.expression
 
   def handle(self, message):
+    print message
+    return "Message received"
     words = message.split(' ')
     mode = words[1]
     value = words[2]
