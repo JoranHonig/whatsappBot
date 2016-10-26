@@ -1,8 +1,9 @@
 import re
 from __init__ import Handler
-class LedHandler(Handler):  
-  def __init__(self):
+class LedHandler(Handler):
 
+
+  def __init__(self):
     self.leds = {}
     for i in range(1,6):
       self.leds[i] = LedStrip(i, 1)
