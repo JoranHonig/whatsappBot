@@ -1,8 +1,10 @@
 import re
 import led
 
+
 class Handler():
     """Super class for all handlers"""
+
     def __init__(self):
         self.expression = re.compile(".*")
 
@@ -11,4 +13,3 @@ class Handler():
   
     def handle(self, message):
         return True
-   

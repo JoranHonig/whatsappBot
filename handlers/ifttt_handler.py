@@ -1,16 +1,21 @@
 import re
 import requests
 from __init__ import Handler
+
+
 """
     Todo:
      * Working version of library to send requests to the ifttt server
      * Update documentation to contain missing details
      * Useful handle function, possibly implement modular handle
 """
+
 methods = {
-    "post" : request.post,
+    "post": request.post,
     "get": request.get,
 }
+
+
 class IftttHandler(Handler):
     """ This is a Handler class to communicate with the IFTTT service."""
     def __init__(self):
@@ -19,8 +24,8 @@ class IftttHandler(Handler):
         return 1
 
     def expression(self):
-       """ Getter for the current expression. """
-       return self.expression
+        """ Getter for the current expression. """
+        return self.expression
 
     def handle(self):
         """ Currently unimplemented handle function."""
@@ -35,4 +40,4 @@ class IftttHandler(Handler):
 
     def do_req(self, message, parameters, method):
         """ This function performs the request to the ifttt service"""
-        r = methods[method]( self.build_uri(message), data = parameters )
+        r = methods[method](self.build_uri(message), data=parameters)

@@ -1,7 +1,7 @@
 import re
 import handlers
 
-#
+
 class MessageHandler():
     def __init__(self):
         """ This class is used to pass information from the yowsup stack to specific handlers """
@@ -15,12 +15,11 @@ class MessageHandler():
         print "Handling mesage."
         for expression in self.handlers.keys():
             match = expression.match(message)
-        if match != None:
-             # Found handler
-             handler = self.handlers[expression]
-             return handler.handle(match.group(0))
+        if match is not None:
+            # Found handler
+            handler = self.handlers[expression]
+            return handler.handle(match.group(0))
         return 0
-
 
     def register(self, handler):
         """Registers a handler with the MessageHandler
@@ -28,7 +27,7 @@ class MessageHandler():
         This function adds handler to this.handlers, using handler.expression() as the key
         """
         regex = handler.expression()
-        if (self.handlers.has_key(regex)):
+        if (regex in self.handlers.keys()):
             return 0
         dict[regex] = handler
         return 1
